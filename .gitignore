@@ -1,3 +1,6 @@
 # bam files
 *.bam
 *.bai
+
+# slurm outputs
+slurm*.out
