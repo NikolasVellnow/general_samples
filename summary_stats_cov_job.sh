@@ -2,9 +2,9 @@
 #SBATCH --partition=med
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --time=07:59:00 
+#SBATCH --time=07:59:00
 #SBATCH --cpus-per-task=20
-#SBATCH --mem-per-cpu=1G
+#SBATCH --mem-per-cpu=300M
 #SBATCH --job-name=summary_stats_cov_job
 #SBATCH --mail-user=nikolas.vellnow@tu-dortmund.de
 #SBATCH --mail-type=All
@@ -31,10 +31,11 @@ echo $T0
 
 conda activate samtools
 
-samtools depth -@ $NUM_THREADS -f $SAMPLE_LIST | \
-awk '{for (i=3;i<='"$MAX_COL"';i++) sum[i]+=$i; \
+samtools depth -H -@ $NUM_THREADS -f $SAMPLE_LIST | \
+awk 'NR==1{OFS=FS="\t";for (i=3;i<='"$MAX_COL"';i++) samples[i]=$i}{for (i=3;i<='"$MAX_COL"';i++) sum[i]+=$i; \
 for (i=3;i<='"$MAX_COL"';i++) sum_sq[i]+=($i)^2}\
-END{for(i=3;i<='"$MAX_COL"';i++) print sum[i]/NR,"\011",\
+END{for(i=3;i<='"$MAX_COL"';i++) print samples[i],"\011",\
+sum[i]/NR,"\011",\
 sqrt(1/NR *sum_sq[i] - (sum[i]/NR)^2),"\011",\
 (sqrt(1/NR *sum_sq[i] - (sum[i]/NR)^2))/((sum[i]+0.0001)/NR)}' > $OUT
 
