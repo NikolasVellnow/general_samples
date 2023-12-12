@@ -3,4 +3,4 @@
 *.bai
 
 # slurm outputs
-slurm*.out
+slurm*out
