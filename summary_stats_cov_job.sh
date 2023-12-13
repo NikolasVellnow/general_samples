@@ -1,8 +1,8 @@
 #!/bin/bash -l
-#SBATCH --partition=med
+#SBATCH --partition=short
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --time=07:59:00
+#SBATCH --time=00:30:00
 #SBATCH --cpus-per-task=20
 #SBATCH --mem-per-cpu=300M
 #SBATCH --job-name=summary_stats_cov_job
@@ -22,6 +22,8 @@ OUT=$3
 NUM_THREADS=20
 
 touch $OUT
+echo -e "sample\tmean\tstandard_deviation\tcoefficient_of_variation" > $OUT
+
 
 # calculating mean, standard deviation, and coefficient of variation for each sample (row=sample in samtools depth output stream)
 
@@ -34,10 +36,10 @@ conda activate samtools
 samtools depth -H -@ $NUM_THREADS -f $SAMPLE_LIST | \
 awk 'NR==1{OFS=FS="\t";for (i=3;i<='"$MAX_COL"';i++) samples[i]=$i}{for (i=3;i<='"$MAX_COL"';i++) sum[i]+=$i; \
 for (i=3;i<='"$MAX_COL"';i++) sum_sq[i]+=($i)^2}\
-END{for(i=3;i<='"$MAX_COL"';i++) print samples[i],"\011",\
-sum[i]/NR,"\011",\
-sqrt(1/NR *sum_sq[i] - (sum[i]/NR)^2),"\011",\
-(sqrt(1/NR *sum_sq[i] - (sum[i]/NR)^2))/((sum[i]+0.0001)/NR)}' > $OUT
+END{for(i=3;i<='"$MAX_COL"';i++) print samples[i]"\011"\
+sum[i]/NR"\011"\
+sqrt(1/NR *sum_sq[i] - (sum[i]/NR)^2)"\011"\
+(sqrt(1/NR *sum_sq[i] - (sum[i]/NR)^2))/((sum[i]+0.0001)/NR)}' >> $OUT
 
 conda deactivate
 
