@@ -1,8 +1,8 @@
 #!/bin/bash -l
-#SBATCH --partition=short
+#SBATCH --partition=med
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --time=00:30:00
+#SBATCH --time=07:59:00
 #SBATCH --cpus-per-task=20
 #SBATCH --mem-per-cpu=300M
 #SBATCH --job-name=summary_stats_cov_job
