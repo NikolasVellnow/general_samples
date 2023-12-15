@@ -3,13 +3,9 @@ This is a collection of scripts to compute and summarize information for WGS sam
 The information should include coverage, estimated sex of the individual, and relatedness between individuals.
 
 ## Coverage
-To get summary statistics about mean, standard deviation and coefficient of variation (CV) of sequencing coverage the script `summary_stats_cov_job.sh` can be used on teh lido-cluster. On e needs to provide a list of the bam files (including their paths) that should be analyzed, the number of samples, the number of threads, and the output file name as arguments. Also, samtools needs to be installed because samtools depth is uded in the script.
+To get summary statistics about mean, standard deviation and coefficient of variation (CV) of sequencing coverage the script `summary_stats_cov_job.sh` can be used on the lido-cluster. One needs to provide a list of the bam files (including their paths) that should be analyzed, the number of samples, the number of threads, and the output file name as arguments. Also, samtools needs to be installed because samtools depth is used in the script.
 
 ```sh
-#TODO Update this code
-
-
-
 #!/bin/bash -l
 #SBATCH --partition=med
 #SBATCH --nodes=1
@@ -34,6 +30,8 @@ OUT=$3
 NUM_THREADS=20
 
 touch $OUT
+echo -e "sample\tmean\tstandard_deviation\tcoefficient_of_variation" > $OUT
+
 
 # calculating mean, standard deviation, and coefficient of variation for each sample (row=sample in samtools depth output stream)
 
@@ -46,10 +44,10 @@ conda activate samtools
 samtools depth -H -@ $NUM_THREADS -f $SAMPLE_LIST | \
 awk 'NR==1{OFS=FS="\t";for (i=3;i<='"$MAX_COL"';i++) samples[i]=$i}{for (i=3;i<='"$MAX_COL"';i++) sum[i]+=$i; \
 for (i=3;i<='"$MAX_COL"';i++) sum_sq[i]+=($i)^2}\
-END{for(i=3;i<='"$MAX_COL"';i++) print samples[i],"\011",\
-sum[i]/NR,"\011",\
-sqrt(1/NR *sum_sq[i] - (sum[i]/NR)^2),"\011",\
-(sqrt(1/NR *sum_sq[i] - (sum[i]/NR)^2))/((sum[i]+0.0001)/NR)}' > $OUT
+END{for(i=3;i<='"$MAX_COL"';i++) print samples[i]"\011"\
+sum[i]/NR"\011"\
+sqrt(1/NR *sum_sq[i] - (sum[i]/NR)^2)"\011"\
+(sqrt(1/NR *sum_sq[i] - (sum[i]/NR)^2))/((sum[i]+0.0001)/NR)}' >> $OUT
 
 conda deactivate
 
