@@ -54,6 +54,5 @@ conda deactivate
 T1=$(date +%T)
 echo "Finished data processing:"
 echo $T1
-
 ```
 
