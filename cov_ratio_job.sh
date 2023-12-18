@@ -2,10 +2,10 @@
 #SBATCH --partition=med
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --time=06:40:00
+#SBATCH --time=06:30:00
 #SBATCH --cpus-per-task=20
 #SBATCH --mem-per-cpu=300M
-#SBATCH --job-name=summary_stats_cov_job
+#SBATCH --job-name=cov_ratio_job
 #SBATCH --mail-user=nikolas.vellnow@tu-dortmund.de
 #SBATCH --mail-type=All
 
