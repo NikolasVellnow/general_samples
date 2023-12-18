@@ -4,3 +4,6 @@
 
 # slurm outputs
 slurm*out
+
+# test files
+*test*

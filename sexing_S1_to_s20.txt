@@ -1,0 +1,1 @@
+sample\tcov_NC_031770.1\tcov_NC_031799.1\tratio_Z_over_3
