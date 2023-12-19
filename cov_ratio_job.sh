@@ -32,8 +32,8 @@ echo $T0
 conda activate samtools
 
 # write header
-echo "sample\tcov_NC_031770.1\tcov_NC_031799.1\tratio_Z_over_3" > $OUT
-#echo -e "sample\tcov_NC_031770.1\tcov_NC_031799.1\tratio_Z_over_3" > $OUT
+#echo "sample\tcov_NC_031770.1\tcov_NC_031799.1\tratio_Z_over_3" > $OUT
+echo -e "sample\tcov_NC_031770.1\tcov_NC_031799.1\tratio_Z_over_3" > $OUT
 
 # get average coverage for "typical" chromosome 3 = NC_031770.1 and Z chromosome
 samtools depth -H -@ $NUM_THREADS -f $SAMPLE_LIST | \

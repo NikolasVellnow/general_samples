@@ -1,4 +1,4 @@
-sample\tcov_NC_031770.1\tcov_NC_031799.1\tratio_Z_over_3
+sample	cov_NC_031770.1	cov_NC_031799.1	ratio_Z_over_3
 /work/mnikvell/data/mapped_reads/s10_EKDN230004359-1A_HNHMFDSX5_L3/s10_EKDN230004359-1A_HNHMFDSX5_L3_sorted_dedup.bam	34.9597	19.8223	0.567002
 /work/mnikvell/data/mapped_reads/s11_EKDN230004360-1A_HNHMFDSX5_L3/s11_EKDN230004360-1A_HNHMFDSX5_L3_sorted_dedup.bam	42.2735	43.5308	1.02974
 /work/mnikvell/data/mapped_reads/s12_EKDN230004361-1A_HNHMFDSX5_L3/s12_EKDN230004361-1A_HNHMFDSX5_L3_sorted_dedup.bam	41.3166	42.7303	1.03421
