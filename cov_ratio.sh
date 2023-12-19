@@ -24,7 +24,7 @@ echo $T0
 echo "sample\tcov_NC_031770.1\tcov_NC_031799.1\tratio_Z_over_3" > $OUT
 #echo -e "sample\tcov_NC_031770.1\tcov_NC_031799.1\tratio_Z_over_3" > $OUT
 
-# get average coverage for "typical" chromosome 3 = NC_031770.1
+# get average coverage for "typical" chromosome 3 = NC_031770.1 and Z chromosome
 samtools depth -H -@ $NUM_THREADS -f $SAMPLE_LIST | \
 awk 'NR==1{OFS=FS="\t";for (i=3;i<='"$MAX_COL"';i++) samples[i]=$i}\
 $1=="NC_031770.1"{j++; for (i=3;i<='"$MAX_COL"';i++) sum_3[i]+=$i} \
