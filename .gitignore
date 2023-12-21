@@ -7,3 +7,7 @@ slurm*out
 
 # test files
 *test*
+
+# output files
+angsdput*
+freqs
