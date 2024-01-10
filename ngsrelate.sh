@@ -24,7 +24,9 @@ angsd -b $SAMPLE_LIST -r NC_031770.1 -gl 2 -domajorminor 1 -snp_pval 1e-6 -domaf
 
 zcat angsdput.mafs.gz | cut -f5 | sed 1d > freqs
 
-ngsRelate -p $NUM_THREADS -g angsdput.glf.gz -n $NUM_SAMPLES -f freqs -O $OUT
+cat $SAMPLE_LIST | grep -E -i -o 'reads/s[0-9]{1,2}_' | grep -E -i -o 's[0-9]{1,2}' > sample_ids.txt
+
+ngsRelate -p $NUM_THREADS -z sample_ids.txt -g angsdput.glf.gz -n $NUM_SAMPLES -f freqs -O $OUT
 
 
 conda deactivate
