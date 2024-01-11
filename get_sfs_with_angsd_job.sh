@@ -36,7 +36,7 @@ angsd \
 -out $OUT \
 -anc $PATH_REF \
 -GL 2 \
--minMapQ 1 \
+-minMapQ 30 \
 -minQ 20 \
 -P $NUM_THREADS
 
