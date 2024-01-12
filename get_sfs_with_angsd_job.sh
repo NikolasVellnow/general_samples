@@ -21,7 +21,6 @@ NUM_THREADS=$3
 # path to reference genome
 PATH_REF=/home/mnikvell/Desktop/work/data/genomes/refseq/vertebrate_other/GCF_001522545.3/GCF_001522545.3_Parus_major1.1_genomic.fna
 
-touch $OUT
 
 T0=$(date +%T)
 echo "Start data processing:"
