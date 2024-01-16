@@ -11,3 +11,5 @@ slurm*out
 # output files
 angsdput*
 freqs
+*.saf.*
+*.arg
